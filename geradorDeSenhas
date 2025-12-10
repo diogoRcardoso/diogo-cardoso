@@ -1,26 +1,41 @@
+// Define a cor do texto como azul para exibir o título
 Console.ForegroundColor = ConsoleColor.Blue;
 Console.WriteLine("Gerador de Senhas Aleatórias ");
- 
+
+// Solicita ao usuário o tamanho da senha
 Console.Write("Digite o tamanho da senha: ");
-if(!int.TryParse(Console.ReadLine(), out int tamanho) || tamanho <= 0)
+
+// Tenta converter a entrada do usuário para um número inteiro
+// Se falhar (digitou letra, símbolo, etc.) OU se o número for menor ou igual a zero, cai no IF
+if (!int.TryParse(Console.ReadLine(), out int tamanho) || tamanho <= 0)
 {
- 
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("Tamanho inválido, digite um tamanho númerico.");
-                return;
+    // Exibe mensagem de erro em vermelho
+    Console.ForegroundColor = ConsoleColor.Red;
+    Console.WriteLine("Tamanho inválido, digite um tamanho numérico.");
+    return; // Encerra o programa
 }
- 
-                string caracteres = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$&";
-                StringBuilder senha = new();
-                
-                Random random = new();
-                
+
+// Conjunto de caracteres possíveis para formar a senha
+string caracteres = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$&";
+
+// StringBuilder é mais eficiente para montar textos dinamicamente
+StringBuilder senha = new();
+
+// Objeto responsável por gerar números aleatórios
+Random random = new();
+
+// Loop para gerar cada caractere da senha
 for (int i = 0; i < tamanho; i++)
 {
- 
-                int indice = random.Next(caracteres.Length);
-                senha.Append(caracteres[indice]);
+    // Gera um índice aleatório baseado no tamanho da string 'caracteres'
+    int indice = random.Next(caracteres.Length);
+
+    // Adiciona o caractere sorteado à senha
+    senha.Append(caracteres[indice]);
 }
- 
+
+// Define a cor do texto como verde para exibir a senha final
 Console.ForegroundColor = ConsoleColor.Green;
+
+// Exibe a senha gerada
 Console.WriteLine($"\nSenha gerada: {senha}\n");
