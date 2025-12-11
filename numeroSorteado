@@ -1,22 +1,41 @@
-//Aqui você informa o jogador que um número de (0 a 10) será sorteado, para que ele tente adivinhar.
 Console.WriteLine("Olá! Bem vindo ao meu jogo! Vamos sortear um número de 0 até 10 e você vai ter que adivinhar qual é.\n");
 
-//Em seguida, o número sorteado deve ser armazenado em uma variável para posterior comparação.
+// Sorteia o número
 Random random = new Random();
-int numeroSorteado = random.Next(11); //0 -> 10
+int numeroSorteado = random.Next(11); // 0 -> 10
 
+int numeroDigitado;
 
-//A seguir você deve solicitar ao jogador que digite qual número ele acha que foi sorteado
-Console.WriteLine("Digite qual número você acha que foi sorteado (de 0 até 10):");
+// Loop para garantir que o usuário digite um número válido
+while (true)
+{
+    Console.Write("Digite qual número você acha que foi sorteado (de 0 até 10): ");
 
-//Após ler a informação digitada pelo jogador, devemos comparar se o número informado pelo jogador está certo ou errado e informar o resultado
-string numeroDigitadoTexto = Console.ReadLine();
-int numeroDigitado = int.Parse(numeroDigitadoTexto);
-
-if (numeroDigitado == numeroSorteado) {
-    Console.WriteLine("PARABÉNS, VOCÊ ACERTOU. O número sorteado foi " + numeroSorteado);
-} else {
-    Console.WriteLine("Errou... Mas não desista, você terá outras oportunidades. O número sorteado foi: " + numeroSorteado);
+    // Tenta converter a entrada do usuário para número
+    if (int.TryParse(Console.ReadLine(), out numeroDigitado))
+    {
+        // Verifica se está no intervalo correto
+        if (numeroDigitado >= 0 && numeroDigitado <= 10)
+        {
+            break; // entrada válida → sai do loop
+        }
+        else
+        {
+            Console.WriteLine("Número fora do intervalo! Digite um número entre 0 e 10.\n");
+        }
+    }
+    else
+    {
+        Console.WriteLine("Entrada inválida! Digite apenas números.\n");
+    }
 }
 
-Console.ReadKey();
+// Comparação final
+if (numeroDigitado == numeroSorteado)
+{
+    Console.WriteLine($"\n🎉 PARABÉNS! Você acertou! O número era {numeroSorteado}.");
+}
+else
+{
+    Console.WriteLine($"\n😢 Você errou... O número sorteado foi {numeroSorteado}.");
+}
