@@ -33,9 +33,9 @@ while (true)
 // Comparação final
 if (numeroDigitado == numeroSorteado)
 {
-    Console.WriteLine($"\n🎉 PARABÉNS! Você acertou! O número era {numeroSorteado}.");
+    Console.WriteLine($"\n Você acertou! O número era {numeroSorteado}.");
 }
 else
 {
-    Console.WriteLine($"\n😢 Você errou... O número sorteado foi {numeroSorteado}.");
+    Console.WriteLine($"\n Você errou... O número sorteado foi {numeroSorteado}.");
 }
